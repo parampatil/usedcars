@@ -1,6 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
+import Login from "../pages/Login";
+import Logout from "../pages/Logout";
+import Home from "../pages/Home";
+import UserDashboard from "../pages/UserDashboard";
+import Profile from "../pages/Profile";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -25,15 +30,15 @@ const Routes = () => {
       children: [
         {
           path: "/",
-          element: <div>User Home Page</div>,
+          element: <UserDashboard />,
         },
         {
           path: "/profile",
-          element: <div>User Profile</div>,
+          element: <Profile />,
         },
         {
           path: "/logout",
-          element: <div>Logout</div>,
+          element: <Logout />,
         },
       ],
     },
@@ -43,11 +48,11 @@ const Routes = () => {
   const routesForNotAuthenticatedOnly = [
     {
       path: "/",
-      element: <div>Home Page</div>,
+      element: <Home />,
     },
     {
       path: "/login",
-      element: <div>Login</div>,
+      element: <Login />,
     },
   ];
 

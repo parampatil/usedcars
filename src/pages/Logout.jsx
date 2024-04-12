@@ -10,11 +10,16 @@ const Logout = () => {
     navigate("/", { replace: true });
   };
 
-  setTimeout(() => {
-    handleLogout();
-  }, 3 * 1000);
+  //   setTimeout(() => {
+  //     handleLogout();
+  //   }, 3 * 1000);
 
-  return <>Logout Page</>;
+  return (
+    <>
+      <h1>Logout Page</h1>
+      <button onClick={handleLogout}>Click to Logout</button>
+    </>
+  );
 };
 
 export default Logout;
