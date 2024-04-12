@@ -6,3 +6,9 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+How i deployed this website:
+https://github.com/ErickKS/vite-deploy?tab=readme-ov-file
+
+Setting Up this project:
+https://dev.to/sanjayttg/jwt-authentication-in-react-with-react-router-1d03
