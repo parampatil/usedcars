@@ -4,9 +4,9 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate("/login", { replace: true });
+    navigate("/login");
   };
-  
+
   return (
     <div>
       <h1>Home Page</h1>

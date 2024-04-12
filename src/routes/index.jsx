@@ -1,6 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
+
+import NavBar from "../pages/NavBar";
 import Login from "../pages/Login";
 import Logout from "../pages/Logout";
 import Home from "../pages/Home";
@@ -67,7 +69,12 @@ const Routes = () => {
   );
 
   // Provide the router configuration using RouterProvider
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <NavBar /> {/* Render the NavBar component here */}
+      <RouterProvider router={router} />
+    </>
+  );
 };
 
 export default Routes;

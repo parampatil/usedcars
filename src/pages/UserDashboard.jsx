@@ -4,7 +4,7 @@ const UserDashboard = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate("/logout", { replace: true });
+    navigate("/logout");
   };
 
   return (
