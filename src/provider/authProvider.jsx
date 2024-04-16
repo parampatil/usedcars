@@ -8,6 +8,9 @@ const AuthProvider = ({ children }) => {
   // State to hold the authentication token
   const [token, setToken_] = useState(localStorage.getItem("token"));
 
+  // Set base url for API requests
+  axios.defaults.baseURL = 'https://abankhele.pythonanywhere.com';
+
   // Function to set the authentication token
   const setToken = (newToken) => {
     setToken_(newToken);

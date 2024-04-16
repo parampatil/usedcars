@@ -1,16 +1,17 @@
 import { Outlet } from 'react-router-dom';
 import NavBar from '../pages/NavBar';
+import  Footer from './Footer';
 
 const LayoutComponent = () => {
     return (
-      <>
+      <div className='min-vh-100 w-100 d-flex flex-column justify-content align-items'>
         {/* <header>Header Content</header> */}
         <NavBar />
-        <main className='w-100'>
+        <main className='container-fluid w-100 flex-fill d-flex justify-content align-items'>
           <Outlet /> {/* Nested routes render here */}
         </main>
-        <footer>Footer Content</footer>
-      </>
+        <Footer />
+      </div>
     );
   }
 

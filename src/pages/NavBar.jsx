@@ -5,7 +5,7 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100">
       <div className="container">
         <a className="navbar-brand" href="/">
-          Your Used Car Dealership
+          Used Car Dealership
         </a>
         <button
           className="navbar-toggler"
