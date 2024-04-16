@@ -2,12 +2,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 
-import NavBar from "../pages/NavBar";
 import Login from "../pages/Login";
 import Logout from "../pages/Logout";
 import Home from "../pages/Home";
 import UserDashboard from "../pages/UserDashboard";
 import Profile from "../pages/Profile";
+import LayoutComponent from "../Components/LayoutComponent";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -61,17 +61,25 @@ const Routes = () => {
   // Combine and conditionally include routes based on authentication status
   const router = createBrowserRouter(
     [
-      ...routesForPublic,
-      ...(!token ? routesForNotAuthenticatedOnly : []),
-      ...routesForAuthenticatedOnly,
+      {
+        path: "/",
+        element: <LayoutComponent />,
+        children: [
+          ...routesForPublic,
+          ...(!token ? routesForNotAuthenticatedOnly : []),
+          ...routesForAuthenticatedOnly,
+        ],
+      },
     ],
-    { basename: "/usedcars" }
+    {
+      basename: "/usedcars",
+    }
   );
 
   // Provide the router configuration using RouterProvider
   return (
     <>
-      <NavBar /> {/* Render the NavBar component here */}
+      {/* f<NavBar /> Render the NavBar component here */}
       <RouterProvider router={router} />
     </>
   );

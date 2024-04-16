@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100">
@@ -19,14 +21,20 @@ const NavBar = () => {
         <div className="collapse navbar-collapse" id="basicNavbarNav">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              {/* <a className="nav-link active" aria-current="page" href="/">
                 Home
-              </a>
+              </a> */}
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/inventory">
+              {/* <a className="nav-link" href="/inventory">
                 Inventory
-              </a>
+              </a> */}
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/about">
