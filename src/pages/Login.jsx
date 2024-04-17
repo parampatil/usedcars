@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import axios from "axios";
 
 const Login = () => {
-  const { setToken } = useAuth();
+  const { setToken, setUser } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +19,11 @@ const Login = () => {
       });
       if (response.status === 200) {
         setToken(response.data.access_token);
+        setUser({
+          firstName: response.data.first_name,
+          lastName: response.data.last_name,
+          email: response.data.email,
+        });
         navigate("/", { replace: true });
       } else {
         console.error("Login failed:", response.data.message);
@@ -32,7 +37,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="container-fluid bg-light rounded p-4 m-4">
+      <div className="container-fluid rounded p-4 m-4" data-aos="fade-down" >
         <h1 className="text-center mb-4">Login Page</h1>
         <div className="row justify-content-center">
           <div className="col-md-6">
@@ -68,15 +73,18 @@ const Login = () => {
                 disabled={loading}
               >
                 {loading ? (
-                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  <span
+                    className="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
                 ) : null}
                 Login
               </button>
             </form>
             <div className="mt-3">
               <p>
-                Don't have an account?{" "}
-                <a href="/signup">Sign Up</a>
+                Don&apos;t have an account? <Link to="/signup">Sign Up</Link>
               </p>
             </div>
           </div>

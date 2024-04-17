@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../provider/authProvider";
 
 const NavBar = () => {
+  const { token, user } = useAuth();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100">
       <div className="container">
@@ -18,35 +21,71 @@ const NavBar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="basicNavbarNav">
-          <ul className="navbar-nav me-auto">
+        <div
+          className="collapse navbar-collapse justify-content-between"
+          id="basicNavbarNav"
+        >
+          <ul className="navbar-nav">
             <li className="nav-item">
-              {/* <a className="nav-link active" aria-current="page" href="/">
-                Home
-              </a> */}
               <Link className="nav-link" to="/">
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              {/* <a className="nav-link" href="/inventory">
-                Inventory
-              </a> */}
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/about">
-                About Us
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/contact">
-                Contact
-              </a>
-            </li>
           </ul>
+          {token ? (
+            <ul className="navbar-nav">
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span className="mx-2">
+                    {user ? user.firstName : "nope"}{" "}
+                    {user ? user.lastName : "nope"}
+                  </span>
+                  <img
+                    src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png"
+                    alt="User"
+                    className="rounded-circle"
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      marginRight: "5px",
+                    }}
+                  />
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <Link className="dropdown-item" to="/profile">
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/logout">
+                      Logout
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          ) : (
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/Login">
+                  Login
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/signup">
+                  Sign Up
+                </Link>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </nav>

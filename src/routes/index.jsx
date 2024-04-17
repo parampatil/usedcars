@@ -3,6 +3,7 @@ import { useAuth } from "../provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
 import Logout from "../pages/Logout";
 import Home from "../pages/Home";
 import UserDashboard from "../pages/UserDashboard";
@@ -55,6 +56,10 @@ const Routes = () => {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <SignUp />,
     },
   ];
 
