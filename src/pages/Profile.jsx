@@ -47,7 +47,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="container mt-4" data-aos="fade-down" >
+    <div className="container mt-4">
       <h1>Edit Profile</h1>
       <div className="row">
         <div className="col-md-6">

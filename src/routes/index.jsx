@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import UserDashboard from "../pages/UserDashboard";
 import Profile from "../pages/Profile";
 import LayoutComponent from "../Components/LayoutComponent";
+import Error from "../Components/Error";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -16,12 +17,20 @@ const Routes = () => {
   // Define public routes accessible to all users
   const routesForPublic = [
     {
+      path: "/",
+      element: <Home />,
+    },
+    {
       path: "/service",
       element: <div>Service Page</div>,
     },
     {
       path: "/about-us",
       element: <div>About Us</div>,
+    },
+    {
+      path: "*",
+      element: <Error />,
     },
   ];
 
@@ -49,10 +58,6 @@ const Routes = () => {
 
   // Define routes accessible only to non-authenticated users
   const routesForNotAuthenticatedOnly = [
-    {
-      path: "/",
-      element: <Home />,
-    },
     {
       path: "/login",
       element: <Login />,

@@ -6,6 +6,7 @@ import axios from "axios";
 const Login = () => {
   const { setToken, setUser } = useAuth();
   const navigate = useNavigate();
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,7 +38,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="container-fluid rounded p-4 m-4" data-aos="fade-down" >
+      <div className="container-fluid rounded p-4 m-4">
         <h1 className="text-center mb-4">Login Page</h1>
         <div className="row justify-content-center">
           <div className="col-md-6">

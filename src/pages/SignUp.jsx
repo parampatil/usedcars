@@ -38,7 +38,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container mt-5" data-aos="fade-down" >
+    <div className="container mt-5">
       <h1 className="text-center mb-4">Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
