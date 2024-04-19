@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom'; // Assuming you are using React Router for navigation
 
 const Profile = () => {
   const initialData = {
@@ -9,16 +10,9 @@ const Profile = () => {
     city: 'Bloomington',
     state: 'IN',
   };
+
   const [formData, setFormData] = useState({ ...initialData });
   const [isEditing, setIsEditing] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -46,99 +40,95 @@ const Profile = () => {
     }
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   return (
-    <div className="container mt-4">
-      <h1>Edit Profile</h1>
-      <div className="row">
-        <div className="col-md-6">
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              disabled={!isEditing}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="firstName">First Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="firstName"
-              name="first_name"
-              value={formData.first_name}
-              onChange={handleChange}
-              disabled={!isEditing}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="lastName"
-              name="last_name"
-              value={formData.last_name}
-              onChange={handleChange}
-              disabled={!isEditing}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              disabled={!isEditing}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="city">City</label>
-            <input
-              type="text"
-              className="form-control"
-              id="city"
-              name="city"
-              value={formData.city}
-              onChange={handleChange}
-              disabled={!isEditing}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="state">State</label>
-            <input
-              type="text"
-              className="form-control"
-              id="state"
-              name="state"
-              value={formData.state}
-              onChange={handleChange}
-              disabled={!isEditing}
-            />
-          </div>
-          {isEditing ? (
-            <div>
-              <button className="btn btn-secondary me-2" onClick={handleCancel}>
-                Cancel
-              </button>
-              <button className="btn btn-primary" onClick={handleSave}>
-                Save
-              </button>
+    <div className="container-fluid w-100">
+      <section>
+        <div className="container py-5">
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="card mb-4 shadow-lg rounded">
+                <div className="card-body text-center">
+                  <img
+                    // src={currentUser.profileImageURL}
+                    src={"https://ui-avatars.com/api/?size=512&bold=true&background=random&name="+formData.first_name+"+"+formData.last_name}
+                    alt="avatar"
+                    className="rounded-circle img-fluid"
+                    style={{ width: "150px" }}
+                  />
+                  <h5 className="my-3">{formData.first_name + " " + formData.last_name}</h5>
+                  <p className="text-muted mb-4">{formData.city + ", " + formData.state}</p>
+                  <div className="d-flex justify-content-center mb-2">
+                  </div>
+                </div>
+              </div>
             </div>
-          ) : (
-            <button className="btn btn-primary" onClick={handleEdit}>
-              Edit
-            </button>
-          )}
+            <div className="col-lg-8">
+              <div className="card mb-4 shadow-lg rounded">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <p className="mb-0">Full Name</p>
+                    </div>
+                    <div className="col-sm-9">
+                      <p className="text-muted mb-0">{formData.first_name + " " + formData.last_name}</p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <p className="mb-0">Email</p>
+                    </div>
+                    <div className="col-sm-9">
+                      <p className="text-muted mb-0 d-flex align-items-center">
+                        {formData.email}{" "}
+                        {isEditing && (
+                          <button type="button" className="btn ms-auto" onClick={handleEdit}>
+                            <i className="fa fa-pencil fa-lg" />
+                          </button>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <p className="mb-0">Password</p>
+                    </div>
+                    <div className="col-sm-9">
+                      <p className="text-muted mb-0  d-flex align-items-center">
+                        **********************
+                        <Link to={"/resetpassword"} type="button" className="btn ms-auto">
+                          <i className="fa fa-pencil fa-lg" />
+                        </Link>
+                      </p>
+                    </div>
+                  </div>
+                  {/* Other fields go here */}
+                  {/* Include Save and Cancel buttons when editing */}
+                  {isEditing && (
+                    <div>
+                      <button className="btn btn-secondary me-2" onClick={handleCancel}>
+                        Cancel
+                      </button>
+                      <button className="btn btn-primary" onClick={handleSave}>
+                        Save
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
