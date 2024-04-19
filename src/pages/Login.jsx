@@ -38,7 +38,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="container-fluid rounded p-4 m-4">
+      <div className="card rounded p-4 m-4 w-50 h-50 align-self-center m-auto shadow-lg border-5 border-dark">
         <h1 className="text-center mb-4">Login Page</h1>
         <div className="row justify-content-center">
           <div className="col-md-6">

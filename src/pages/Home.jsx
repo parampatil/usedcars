@@ -1,28 +1,29 @@
 import { Link } from "react-router-dom";
 
 const Home = () => {
-
   return (
-    <div className="container-fluid w-100 p-0">
-      <img
-        src="https://lp-auto-assets.s3.amazonaws.com/preowned/M4/header.jpg"
-        className="img-fluid w-100 p-0 m-0"
-        alt="Responsive image"
-      ></img>
+    <div className="container-fluid p-0">
+      <div className="container-fluid position relative p-0">
+        <img
+          src="https://lp-auto-assets.s3.amazonaws.com/preowned/M4/header.jpg"
+          className="img-fluid w-100 p-0 m-0"
+          alt="Responsive image"
+        ></img>
 
-      {/* Search bar */}
-      <div className="position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center w-100 shadow-lg">
-        <form className="d-flex w-50">
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button className="btn btn-outline-success" type="submit">
-            Search
-          </button>
-        </form>
+        {/* Search bar */}
+        <div className="position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center w-100 shadow-lg">
+          <form className="d-flex w-50">
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button className="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
       </div>
 
       {/* Login button in a colorful card */}
@@ -35,7 +36,7 @@ const Home = () => {
         </div>
         <div className="card p-2">
           <h4 className="m-2">Sign Up Now</h4>
-          <Link className="btn btn-primary btn-block" to="/signup">
+          <Link className="btn btn-primary btn-block" to="/login">
             Sign Up
           </Link>
         </div>
