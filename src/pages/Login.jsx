@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import axios from "axios";
+import anime from "animejs/lib/anime.es.js";
 
 const Login = () => {
   const { setToken, setUser } = useAuth();
@@ -10,6 +11,16 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    anime({
+      targets: ".card",
+      translateY: [-20, 0],
+      opacity: [0, 1],
+      easing: "easeInOutSine",
+      delay: anime.stagger(100),
+    });
+  }, []);
 
   const handleLogin = async () => {
     setLoading(true);

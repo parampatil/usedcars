@@ -1,10 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import states from "../Components/States";
+import anime from "animejs/lib/anime.es.js";
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    anime({
+      targets: ".card",
+      translateY: [-20, 0],
+      opacity: [0, 1],
+      easing: "easeInOutSine",
+      delay: anime.stagger(100),
+    });
+  }, []);
+
   const [formData, setFormData] = useState({
     email: "john.doe44@example.com",
     first_name: "John",

@@ -10,7 +10,7 @@ const NavBar = () => {
       <div className="container my-0">
         <Link className="navbar-brand" to="/">
           <img src={Logo} alt="Logo" className="object-fit-scale " width="75" height="50"/>
-          <span className="m-2">Used Cars</span>
+          <span className="m-2">CarConnect</span>
         </Link>
         <button
           className="navbar-toggler"
