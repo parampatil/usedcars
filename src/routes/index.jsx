@@ -4,6 +4,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import AboutUs from "../pages/AboutUs";
 import Logout from "../pages/Logout";
 import Home from "../pages/Home";
 import UserDashboard from "../pages/UserDashboard";
@@ -17,16 +18,12 @@ const Routes = () => {
   // Define public routes accessible to all users
   const routesForPublic = [
     {
-      path: "/",
-      element: <Home />,
-    },
-    {
       path: "/service",
       element: <div>Service Page</div>,
     },
     {
       path: "/about-us",
-      element: <div>About Us</div>,
+      element: <AboutUs />,
     },
     {
       path: "*",
@@ -58,6 +55,10 @@ const Routes = () => {
 
   // Define routes accessible only to non-authenticated users
   const routesForNotAuthenticatedOnly = [
+    {
+      path: "/",
+      element: <Home />,
+    },
     {
       path: "/login",
       element: <Login />,

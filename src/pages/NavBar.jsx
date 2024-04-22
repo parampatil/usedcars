@@ -33,6 +33,11 @@ const NavBar = () => {
                 Home
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link fs-5" to="/about-us">
+                About Us
+              </Link>
+            </li>
           </ul>
           {token ? (
             <ul className="navbar-nav">
