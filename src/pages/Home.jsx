@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import anime from "animejs/lib/anime.es.js";
 import { useEffect } from "react";
+
+import CarList from "../Components/CarList";
 
 const Home = () => {
   useEffect(() => {
@@ -69,7 +71,7 @@ const Home = () => {
       </div>
 
       {/* Login button in a colorful card */}
-      <div className="container-fluid bg-dark text-white shadow-lg d-flex justify-content-evenly p-3">
+      {/* <div className="container-fluid bg-dark text-white shadow-lg d-flex justify-content-evenly p-3">
         <div className="card p-2">
           <h4 className="m-2">Login Now</h4>
           <Link className="btn btn-primary btn-block" to="/login">
@@ -82,7 +84,9 @@ const Home = () => {
             Sign Up
           </Link>
         </div>
-      </div>
+      </div> */}
+
+      <CarList />
 
       
     </div>
