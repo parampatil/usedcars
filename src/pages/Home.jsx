@@ -1,26 +1,8 @@
 // import { Link } from "react-router-dom";
 import anime from "animejs/lib/anime.es.js";
-import { useEffect, useState } from "react";
-
-import CarList from "../Components/CarList";
+import { useEffect } from "react";
 
 const Home = () => {
-  const [searchKeyword, setSearchKeyword] = useState("");
-
-  useEffect(() => {
-    const delaySearch = setTimeout(() => {
-      // Set the search term directly in the CarList component
-      // You can replace this with your actual logic to filter the car list
-      console.log("Search term:", searchKeyword);
-    }, 300); // Debounce delay of 300ms
-
-    return () => clearTimeout(delaySearch); // Clear timeout on component unmount
-  }, [searchKeyword]);
-
-  const handleInputChange = (e) => {
-    setSearchKeyword(e.target.value);
-  };
-
   useEffect(() => {
     anime({
       targets: ".card",
@@ -69,44 +51,7 @@ const Home = () => {
           className="img-fluid w-100 p-0 m-0"
           alt="Responsive image"
         ></img>
-
-        {/* Search bar */}
-        <div className="position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center w-100 shadow-lg">
-          <form className="search d-flex w-50">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search for car companies"
-              aria-label="Search"
-              value={searchKeyword}
-              onChange={handleInputChange}
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
       </div>
-
-      {/* Login button in a colorful card */}
-      {/* <div className="container-fluid bg-dark text-white shadow-lg d-flex justify-content-evenly p-3">
-        <div className="card p-2">
-          <h4 className="m-2">Login Now</h4>
-          <Link className="btn btn-primary btn-block" to="/login">
-            Login
-          </Link>
-        </div>
-        <div className="card p-2">
-          <h4 className="m-2">Sign Up Now</h4>
-          <Link className="btn btn-primary btn-block" to="/login">
-            Sign Up
-          </Link>
-        </div>
-      </div> */}
-
-      <CarList searchKeyword={searchKeyword} />
-
-      
     </div>
   );
 };

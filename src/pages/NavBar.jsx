@@ -33,6 +33,11 @@ const NavBar = () => {
                 Home
               </Link>
             </li>
+            {token ? (<li className="nav-item">
+              <Link className="nav-link fs-5" to="/postings">
+                All Postings
+              </Link>
+            </li>) : (<></>)}
             <li className="nav-item">
               <Link className="nav-link fs-5" to="/about-us">
                 About Us

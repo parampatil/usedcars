@@ -1,29 +1,13 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState} from "react";
 import PropTypes from "prop-types";
 
 const CarList = (props) => {
-  const [cars, setCars] = useState([]);
-  const [visibleCars, setVisibleCars] = useState(20); // Initial number of cars to display
-  const [loading, setLoading] = useState(false);
+  const [cars, setCars] = useState(props.carsData);
+  const [visibleCars, setVisibleCars] = useState(9); // Initial number of cars to display
   const [selectedCar, setSelectedCar] = useState(null); // Track the selected car for modal display
 
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get("/vehicle_postings")
-      .then((response) => {
-        setCars(response.data.postings);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
-      });
-  }, []);
-
   const loadMoreCars = () => {
-    setVisibleCars((prevVisibleCars) => prevVisibleCars + 20); // Load 20 more cars
+    setVisibleCars((prevVisibleCars) => prevVisibleCars + 9); // Load 9 more cars
   };
 
   const handleViewDetails = (car) => {
@@ -72,7 +56,7 @@ const CarList = (props) => {
       {visibleCars < filteredCars.length && (
         <div className="text-center my-3">
           <button className="btn btn-primary" onClick={loadMoreCars}>
-            {loading ? "Loading..." : "Load More"}
+            Load More
           </button>
         </div>
       )}
@@ -259,6 +243,44 @@ const CarList = (props) => {
                     </div>
                   </div>
                   <div className="row mt-3">
+                    {/* Condition */}
+                    <div className="col-md-4">
+                      <div
+                        className="card"
+                        style={{ backgroundColor: "#e9ecef" }}
+                      >
+                        <div className="card-body">
+                          <h6 className="card-title">Condition</h6>
+                          <p>{selectedCar.condition}</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Transmission */}
+                    <div className="col-md-4">
+                      <div
+                        className="card"
+                        style={{ backgroundColor: "#e9ecef" }}
+                      >
+                        <div className="card-body">
+                          <h6 className="card-title">Transmission</h6>
+                          <p>{selectedCar.transmission}</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Type */}
+                    <div className="col-md-4">
+                      <div
+                        className="card"
+                        style={{ backgroundColor: "#e9ecef" }}
+                      >
+                        <div className="card-body">
+                          <h6 className="card-title">Type</h6>
+                          <p>{selectedCar.type}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row mt-3">
                     <div className="col-md-12">
                       <div
                         className="card"
@@ -274,7 +296,8 @@ const CarList = (props) => {
                   {/* Add more cards for additional information */}
                 </div>
               </div>
-              <div className="modal-footer">
+              <div className="modal-footer d-flex justify-content-between">
+              <p className="text-muted">Price: ${selectedCar.price}</p>
                 <button
                   type="button"
                   className="btn btn-secondary"
@@ -294,6 +317,7 @@ const CarList = (props) => {
 // Props validation using PropTypes
 CarList.propTypes = {
   searchKeyword: PropTypes.string.isRequired,
+  carsData: PropTypes.array.isRequired,
 };
 
 export default CarList;
