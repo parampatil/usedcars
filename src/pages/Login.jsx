@@ -35,6 +35,8 @@ const Login = () => {
           firstName: response.data.first_name,
           lastName: response.data.last_name,
           email: response.data.email,
+          region: response.data.region,
+          user_state: response.data.user_state
         });
         navigate("/", { replace: true });
       } else {

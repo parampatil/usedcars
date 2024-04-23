@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
-const CarList = () => {
+const CarList = (props) => {
   const [cars, setCars] = useState([]);
   const [visibleCars, setVisibleCars] = useState(20); // Initial number of cars to display
   const [loading, setLoading] = useState(false);
@@ -33,10 +34,17 @@ const CarList = () => {
     setSelectedCar(null);
   };
 
+  // Filter cars based on searchKeyword
+  const filteredCars = cars.filter((car) =>
+    `${car.year} ${car.manufacturer} ${car.vehicle_model}`
+      .toLowerCase()
+      .includes(props.searchKeyword.toLowerCase())
+  );
+
   return (
     <div className="container mt-5">
       <div className="row">
-        {cars.slice(0, visibleCars).map((car) => (
+        {filteredCars.slice(0, visibleCars).map((car) => (
           <div className="col-md-4 mb-4" key={car.id}>
             <div className="card">
               <img
@@ -61,8 +69,8 @@ const CarList = () => {
           </div>
         ))}
       </div>
-      {visibleCars < cars.length && (
-        <div className="text-center mt-3">
+      {visibleCars < filteredCars.length && (
+        <div className="text-center my-3">
           <button className="btn btn-primary" onClick={loadMoreCars}>
             {loading ? "Loading..." : "Load More"}
           </button>
@@ -106,12 +114,16 @@ const CarList = () => {
                             style={{ width: "120px", height: "120px" }}
                           >
                             <img
-                    src={"https://ui-avatars.com/api/?size=512&bold=true&background=random&name="+                    // src={currentUser.profileImageURL}
-                    selectedCar.first_name+"+"+selectedCar.last_name}
-                    alt="avatar"
-                    className="rounded-circle img-fluid"
-                    style={{ width: "150px" }}
-                  />
+                              src={
+                                "https://ui-avatars.com/api/?size=512&bold=true&background=random&name=" + // src={currentUser.profileImageURL}
+                                selectedCar.first_name +
+                                "+" +
+                                selectedCar.last_name
+                              }
+                              alt="avatar"
+                              className="rounded-circle img-fluid"
+                              style={{ width: "150px" }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -277,6 +289,11 @@ const CarList = () => {
       )}
     </div>
   );
+};
+
+// Props validation using PropTypes
+CarList.propTypes = {
+  searchKeyword: PropTypes.string.isRequired,
 };
 
 export default CarList;

@@ -1,10 +1,26 @@
 // import { Link } from "react-router-dom";
 import anime from "animejs/lib/anime.es.js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import CarList from "../Components/CarList";
 
 const Home = () => {
+  const [searchKeyword, setSearchKeyword] = useState("");
+
+  useEffect(() => {
+    const delaySearch = setTimeout(() => {
+      // Set the search term directly in the CarList component
+      // You can replace this with your actual logic to filter the car list
+      console.log("Search term:", searchKeyword);
+    }, 300); // Debounce delay of 300ms
+
+    return () => clearTimeout(delaySearch); // Clear timeout on component unmount
+  }, [searchKeyword]);
+
+  const handleInputChange = (e) => {
+    setSearchKeyword(e.target.value);
+  };
+
   useEffect(() => {
     anime({
       targets: ".card",
@@ -60,8 +76,10 @@ const Home = () => {
             <input
               className="form-control me-2"
               type="search"
-              placeholder="Search"
+              placeholder="Search for car companies"
               aria-label="Search"
+              value={searchKeyword}
+              onChange={handleInputChange}
             />
             <button className="btn btn-outline-success" type="submit">
               Search
@@ -86,7 +104,7 @@ const Home = () => {
         </div>
       </div> */}
 
-      <CarList />
+      <CarList searchKeyword={searchKeyword} />
 
       
     </div>
