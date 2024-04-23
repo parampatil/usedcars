@@ -9,6 +9,7 @@ import Logout from "../pages/Logout";
 import Home from "../pages/Home";
 import UserDashboard from "../pages/UserDashboard";
 import AllCarPostings from "../pages/AllCarPostings";
+import AddPosting from "../pages/AddPosting";
 import Profile from "../pages/Profile";
 import LayoutComponent from "../Components/LayoutComponent";
 import Error from "../Components/Error";
@@ -45,6 +46,10 @@ const Routes = () => {
         {
           path: "/postings",
           element: <AllCarPostings />,
+        },
+        {
+          path: "/add-posting",
+          element: <AddPosting />,
         },
         {
           path: "/profile",

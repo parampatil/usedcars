@@ -64,7 +64,7 @@ const UserDashboard = () => {
           </div>
         </div>
       ) : (
-        <CarList searchKeyword={searchKeyword} carsData={carsData} />
+        <CarList searchKeyword={searchKeyword} carsData={carsData} isEditable="True"/>
       )}
     </div>
   );
