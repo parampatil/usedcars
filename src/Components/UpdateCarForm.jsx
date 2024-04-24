@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import ModelDropdown from "./ModelDropdown";
+import SuccessModal from "./SuccessModal";
 
 const UpdateCarForm = (props) => {
   const [formData, setFormData] = useState({
@@ -18,6 +19,8 @@ const UpdateCarForm = (props) => {
     model: props.carData.model,
   });
 
+  const [showSuccessModal, setShowSuccessModal] = useState(false); // State for showing success modal
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -27,7 +30,7 @@ const UpdateCarForm = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(formData)
+    console.log(formData);
     e.preventDefault();
     try {
       await axios.put("/update_vehicle_posting", formData);
@@ -155,6 +158,12 @@ const UpdateCarForm = (props) => {
           </div>
         </form>
       </div>
+      {/* Success Modal */}
+      <SuccessModal
+        show={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        message="Car updated successfully!"
+      />
     </div>
   );
 };
